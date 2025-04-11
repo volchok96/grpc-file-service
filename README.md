@@ -80,7 +80,7 @@ filename — имя файла.
 ### Запуск сервера
 
 ```bash
-go run cmd/server/main.go "
+go run cmd/server/main.go 
 ```
 ### Запуск клиента
 
