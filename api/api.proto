@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/volchok96/grpc-file-service/api";
+
+service FileStorage {
+    rpc UploadFile(stream UploadRequest) returns (UploadResponse);
+    rpc DownloadFile(DownloadRequest) returns (stream DownloadResponse);
+    rpc ListFiles(ListRequest) returns (ListResponse);
+}
+
+message UploadRequest {
+    string filename = 1;
+    bytes chunk = 2;
+}
+
+message UploadResponse {
+    string filename = 1;
+    uint32 size = 2;
+}
+
+message DownloadRequest {
+    string filename = 1;
+}
+
+message DownloadResponse {
+    bytes chunk = 1;
+}
+
+message ListRequest {}
+
+message FileInfo {
+    string filename = 1;
+    string created_at = 2;
+    string updated_at = 3;
+}
+
+message ListResponse {
+    repeated FileInfo files = 1;
+}
